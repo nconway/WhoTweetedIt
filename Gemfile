@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass', '~> 3.3.4'
 
 gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
