@@ -6,7 +6,7 @@
 	
 	<div class='row'>
 		<% if current_user %>
-			Welcome <%= current_user.uid %>!
+			Welcome <%= current_user.name %>!
 			<%= link_to "Sign Out", signout_path %>
 		<% else %>
 			<%= link_to image_tag("twitter_signin.png", :alt => "twitter_signin"), "/auth/twitter" %>
