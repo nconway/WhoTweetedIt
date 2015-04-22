@@ -22,13 +22,14 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def twitter
-		@client ||= Twitter::REST::Client.new do |config|
-		  config.consumer_key        = "o66n2O0ub1HYwUkd1OVTJTnyM"
-		  config.consumer_secret     = "LmrtcGLOkj4AnELWnHF6WhrNy3lv1btVGmSPYA10cvlTcx45iG"
+	def twitter_client
+		client = Twitter::REST::Client.new do |config|
+		  config.consumer_key        = Rails.application.secrets.twitter_api_key
+		  config.consumer_secret     = Rails.application.secrets.twitter_api_secret
 		  config.access_token        = token
 		  config.access_token_secret = secret
 		end
+		return client
 	end
 
 end

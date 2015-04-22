@@ -6,11 +6,15 @@ class SessionsController < ApplicationController
 		user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
 		session[:user_id] = user.id
 		#redirect_to root_url, :notice => "Signed in!" 
-		render :show
+		redirect_to tweet_path(current_user)
 	end
 
-	def show
-	end
+	#def show
+	#	client = current_user.twitter_client
+	#	friends = client.friend
+	#	binding.pry
+	#	puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
+	#end
 
 	def destroy
 		session[:user_id] = nil

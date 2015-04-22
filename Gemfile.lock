@@ -90,6 +90,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.3)
+      pry (>= 0.9.10)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -173,6 +175,7 @@ DEPENDENCIES
   omniauth-twitter
   pg
   pry
+  pry-rails
   rails (= 4.1.4)
   rails_12factor
   sass-rails (~> 4.0.3)
