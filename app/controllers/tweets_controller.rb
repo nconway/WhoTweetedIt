@@ -4,10 +4,12 @@ class TweetsController < ApplicationController
   	end
 
 	def show
-		client = current_user.twitter_client.friends
-		#friends = client.friend
-		binding.pry
-		puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
+		client = current_user.twitter_client
+		@friends = client.friends
+		#@friends_array = client.friends.name.to_a
+
+		#binding.pry
+		#puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
 	end
 
 end

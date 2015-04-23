@@ -9,13 +9,6 @@ class SessionsController < ApplicationController
 		redirect_to tweet_path(current_user)
 	end
 
-	#def show
-	#	client = current_user.twitter_client
-	#	friends = client.friend
-	#	binding.pry
-	#	puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
-	#end
-
 	def destroy
 		session[:user_id] = nil
 		redirect_to root_url, :notice => "Signed out!"

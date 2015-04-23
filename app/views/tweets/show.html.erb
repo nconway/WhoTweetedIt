@@ -5,7 +5,28 @@
 			<%= link_to "Sign Out", signout_path %>
 	</div>
 	
+	<div class='row'>
+		Your friends are: 
+		<%= @friends.attrs[:users][0][:name] %>
 
+		<ul>
+			<% @friends.attrs[:users].each do |todo| %>
+  				<li><%= todo[:name] %>, <img src="<%= todo[:profile_image_url] %>" alt="profile image"> </li>
+			<% end %>
+		</ul>
+		
+	</div>
+
+	<div class ='row'>
+		Your friends' tweets:
+		
+		<ul>
+			<% @friends.attrs[:users].each do |todo| %>
+  				<li><%= todo[:status][:text] %></li>
+			<% end %>
+		</ul>
+	</div>
+	
 </div>
 
 

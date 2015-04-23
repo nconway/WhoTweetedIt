@@ -36,6 +36,8 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'pry'
 	gem 'pry-rails'
+	gem 'binding_of_caller'
+	gem "better_errors"
 end
 
 group :production do
