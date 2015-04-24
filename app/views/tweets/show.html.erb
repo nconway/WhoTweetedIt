@@ -23,34 +23,42 @@
 		<div class="col-md-8">
   			<h4>Guess which friend tweeted this:</h4>
   			<div class = "box">
-				<%= @name_tweet_hash.last %>
+				<%= @hash_array.shuffle.pop[1] %>
 			</div>
   		</div>	
 
   		<div class="col-md-8">
   			
-  			<div class = "submit_answer">
-  				<br>
-  				<form>
-  					<input type='submit' value='Submit Guess' class = 'btn btn-primary'>
-  				</form>
-  			</div>
+  			<% if @win == 1%> 
+	  			<div class = "submit_answer">
+	  				<br>
+	  				<form>
+	  					<input type='submit' value='Submit Guess' class = 'btn btn-primary'>
+	  				</form>
+	  			</div>
+  			
+  			<% elsif @win == 2%> 
+	  			<div class = "right_answer">
+					<h4> You are correct! Nice Job! </h4>
+					<form>
+						<input type='submit' value='Try Again' class = 'btn btn-primary'>
+					</form>
+				</div>
 
-  			<div class = "right_answer">
-				<h4> You are correct! Nice Job! </h4>
-				<form>
-					<input type='submit' value='Try Again' class = 'btn btn-primary'>
-				</form>
-			</div>
+			<% elsif @win == 3%>
+				<div class = "wrong_answer">
+					<h4> Nope, sorry! The correct answer is:
+					<%= @name_list[0] %></h4>
+					<form>
+						<input type='submit' value='Try Again' class = 'btn btn-primary'>
+					</form>
+				</div>
 
-			<div class = "wrong_answer">
-				<h4> Nope, sorry! The correct answer is:
-				<%= @name_list[0] %></h4>
-				<form>
-					<input type='submit' value='Try Again' class = 'btn btn-primary'>
-				</form>
-			</div>
-  		
+			<% else %>
+				<h4>Game Over</h4>
+
+  			<% end %>
+
   		</div>			
 	</div>
 	
