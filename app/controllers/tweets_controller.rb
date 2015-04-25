@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
 
 	def show
 		@result = show_friends
-		@win = 4
+		@win = 4	
 	end
 
 	def guess
