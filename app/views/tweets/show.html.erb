@@ -41,7 +41,7 @@
   			<% elsif @win == 2%> 
 	  			
 	  			<div class = "right_answer">
-					<div class = "box">
+					<div class = "correct">
 						<h4> You are correct! Nice Job! </h4>
 					</div>
 					<br>
@@ -53,7 +53,7 @@
 			<% elsif @win == 3%>
 				
 				<div class = "wrong_answer">
-					<div class = "box">
+					<div class = "wrong">
 						<h4> Nope, the correct answer was: <%= @result['name_list'][0] %></h4>
 					</div>
 					<br>

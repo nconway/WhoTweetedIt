@@ -26,6 +26,27 @@
 	margin-bottom: 10px;
 }
 
+.correct {
+	width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+    background-color: #7fc398;
+    border: 2px solid grey;
+    border-radius: 25px
+}
+
+.wrong {
+	width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+    background-color: #ea4b3a;
+    border: 2px solid grey;
+    border-radius: 25px
+}
 
 .pad {
 	padding-bottom: 30px;

@@ -5,17 +5,16 @@ class TweetsController < ApplicationController
 
 	def show
 		@result = show_friends
-		@win = 4	
+		@win = 2	
 	end
 
 	def guess
 
+		@guess = params[:guess]['friends_list']
 
 		@result = show_friends
 		render 'show'
 	end 
-
-
 
 	def show_friends
 
