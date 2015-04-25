@@ -4,12 +4,20 @@ class TweetsController < ApplicationController
   	end
 
 	def show
-		
-		#@friends_array = client.friends.name.to_a
-		#binding.pry
-		#puts "aaaaaaaaaaaaaaaaaaaaaaaaa"
+		@result = show_friends
+		@win = 4
+	end
 
-		@win = 2
+	def guess
+
+
+		@result = show_friends
+		render 'show'
+	end 
+
+
+
+	def show_friends
 
 		client = current_user.twitter_client
 		@friends = client.friends
@@ -26,14 +34,16 @@ class TweetsController < ApplicationController
   		#creates a hash from the two arrays
 		@name_tweet_hash = Hash[@name_list.zip @tweet_list]
 
+		#makes an array of key-value pair array
 		@name_tweet_hash.each_pair do |one|
   			@hash_array << one
   		end
-		
-		#@hash_array.shuffle.pop[1]
+  		result ={'name_list'=>@name_list,'hash_array'=>@hash_array,'friends'=>@friends}
 
+	end 
+	
+	def safe_params
+		params.require(:guess).permit(:friends_list)
 	end
-	
-	
 
 end
