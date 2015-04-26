@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     root 'tweets#index'
     get 'auth/:provider/callback' => 'sessions#create'
     get '/tweets/guess' => 'tweets#guess'
+    get '/tweets/again' => 'tweets#again'
     get "/signout" => "sessions#destroy", :as => :signout
     resources :sessions, only: [:show]
     resources :tweets, only: [:index, :show]

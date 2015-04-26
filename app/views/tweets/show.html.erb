@@ -11,7 +11,9 @@
 			
 			<%= form_tag('/tweets/guess', method: "get") do %>
 				<br>
-				<input type='submit' value='Submit Guess' class = 'btn btn-primary'>
+				<% if @state == 1 %> 
+					<input type='submit' value='Submit Guess' class = 'btn btn-primary'>
+				<% end %>
 				<br>
 				<br>
 				<% @result['friends'].attrs[:users].each do |todo| %>
@@ -19,47 +21,45 @@
 						<img src="<%= todo[:profile_image_url] %>">
 						<input type = 'radio' name = 'guess[friends_list]' value = "<%= todo[:name] %>" />
 					</label>
+					<br>
 				<% end %>
 			<% end %>
 		</div>
 
-		<div class="col-md-8">
+		<div class="col-md-8 extra">
   			
-  			<% if @win == 1%> 
+  			<% if @state == 1 && @count < 5 %> 
 	  			
 	  			<div class = "submit_answer">
 		  			<h4>Guess which friend tweeted this:</h4>
 		  			<div class = "box">
-						<%= @result['hash_array'].shuffle.pop[1] %>
+						<%= @current_tweet %>
 					</div>
 	  				<br>
-	  				<form>
-	  					<input type='submit' value='Submit Guess' class = 'btn btn-primary'>
-	  				</form>
 	  			</div>
   			
-  			<% elsif @win == 2%> 
+  			<% elsif @state == 2%> 
 	  			
 	  			<div class = "right_answer">
 					<div class = "correct">
 						<h4> You are correct! Nice Job! </h4>
 					</div>
 					<br>
-					<form>
-						<input type='submit' value='Try Again' class = 'btn btn-primary'>
-					</form>
+					<%= form_tag('/tweets/again', method: "get") do %>
+						<input type='submit' name = 'again' value='Try Again' class = 'btn btn-primary'>
+					<% end %>
 				</div>
 
-			<% elsif @win == 3%>
+			<% elsif @state == 3%>
 				
 				<div class = "wrong_answer">
 					<div class = "wrong">
-						<h4> Nope, the correct answer was: <%= @result['name_list'][0] %></h4>
+						<h4> Nope, the correct answer was: <%= @current_friend %></h4>
 					</div>
 					<br>
-					<form>
-						<input type='submit' value='Try Again' class = 'btn btn-primary'>
-					</form>
+					<%= form_tag('/tweets/again', method: "get") do %>
+						<input type='submit' name = 'again' value='Try Again' class = 'btn btn-primary'>
+					<% end %>
 				</div>
 
 			<% else %>
