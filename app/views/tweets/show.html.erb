@@ -20,6 +20,8 @@
 					<label for="name"> <%= todo[:name] %>
 						<img src="<%= todo[:profile_image_url] %>">
 						<input type = 'radio' name = 'guess[friends_list]' value = "<%= todo[:name] %>" />
+						<input type = 'hidden' name = 'guess[state]' value = "<% @state %>" />
+						<input type = 'hidden' name = 'guess[current_friend]' value = "<%= @current_friend %>"/>
 					</label>
 					<br>
 				<% end %>
@@ -28,7 +30,7 @@
 
 		<div class="col-md-8 extra">
   			
-  			<% if @state == 1 && @count < 5 %> 
+  			<% if @state == 1 %> 
 	  			
 	  			<div class = "submit_answer">
 		  			<h4>Guess which friend tweeted this:</h4>
@@ -47,6 +49,7 @@
 					<br>
 					<%= form_tag('/tweets/again', method: "get") do %>
 						<input type='submit' name = 'again' value='Try Again' class = 'btn btn-primary'>
+						<input type = 'hidden' name = 'guess[state]' value = "<% @state %>" />
 					<% end %>
 				</div>
 
@@ -54,11 +57,12 @@
 				
 				<div class = "wrong_answer">
 					<div class = "wrong">
-						<h4> Nope, the correct answer was: <%= @current_friend %></h4>
+						<h4> Nope, the correct answer was: <%= @answer %></h4>
 					</div>
 					<br>
 					<%= form_tag('/tweets/again', method: "get") do %>
 						<input type='submit' name = 'again' value='Try Again' class = 'btn btn-primary'>
+						<input type = 'hidden' name = 'guess[state]' value = "<% @state %>" />
 					<% end %>
 				</div>
 

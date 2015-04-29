@@ -4,21 +4,23 @@ class TweetsController < ApplicationController
   	end
 
 	def show
-		@result = show_friends
-		@guess
-		@state = 1
-		@count = 0
-		@current_tweet
-		@current_friend
+
+		#if params[:state]
+		#	@state = params[:guess]
+		#else
+		#	@state = 0
+		#end
 		
-		if @state == 1 
+		@state = 1
+
+		if @state == 1
+			@result = show_friends
 			@current_kv = @result['hash_array'].shuffle.pop
 			@current_tweet = @current_kv[1]
 			@current_friend = @current_kv[0]
-			@count = @count + 1
+			@state = 1
 		end
-		
-		current_state ={'count'=>@count, 'current_kv'=>@current_kv,'current_tweet'=>@current_tweet,'current_friend'=>@current_friend, 'state'=>@state}
+		current_state ={'current_kv'=>@current_kv,'current_tweet'=>@current_tweet,'current_friend'=>@current_friend, 'state'=>@state}
 	end
 
 	def again
@@ -26,27 +28,25 @@ class TweetsController < ApplicationController
 		@result = show_friends
 		@current_state = show
 		@state = 1
-		@current_tweet
-		@current_friend
-		
 		
 		render 'show'
 	end
 
 	def guess
 
-		@guess = params[:guess]['friends_list']
-		@result = show_friends
-		@current_state = show
-		@current_friend
-		@current_tweet
+		#@freind = params[:current_friend]
 		
-		if @guess == @current_friend
+		@guess = params[:guess]['friends_list']
+		@state = params[:guess]['state']	
+		@answer = params[:guess]['current_friend']	
+		@current_state = show
+		
+		if @guess == @answer
 			@state = 2
 		else 
 			@state = 3
 		end
-	
+		
 		render 'show'
 	end 
 
@@ -76,7 +76,7 @@ class TweetsController < ApplicationController
 	end 
 	
 	def safe_params
-		params.permit(:guess, :friends_list, :again)
+		params.permit(:guess, :friends_list, :again, :state, :current_friend)
 	end
 
 end
